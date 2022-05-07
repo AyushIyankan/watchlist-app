@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
 const ResultCard = ({ movie }) => {
   //  <img
   //    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
   //    alt={`${movie.title}`}
   //  />;
+  const { addMovieToWatchlist } = useContext(GlobalContext);
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -14,7 +16,7 @@ const ResultCard = ({ movie }) => {
             alt={movie.title}
           />
         ) : (
-          <div className="filler"></div>
+          <div className="filler-poster"></div>
         )}
       </div>
 
@@ -27,7 +29,9 @@ const ResultCard = ({ movie }) => {
         </div>
 
         <div className="controls">
-          <button className="btn">Add to Watchlist</button>
+          <button className="btn" onClick={() => addMovieToWatchlist(movie)}>
+            Add to Watchlist
+          </button>
         </div>
       </div>
     </div>
